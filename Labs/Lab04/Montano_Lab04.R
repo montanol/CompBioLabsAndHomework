@@ -9,6 +9,7 @@ for (i in 1:10) {
 # assign parameters
 initial <- 10
 change <- 5 - (2 * 1.34)
+total <- rep(0,8)
 for (i in 1:8) {
   total[i] <- initial + change
   initial <- total[i]
@@ -19,7 +20,7 @@ for (i in 1:8) {
 # assign parameters
 initial_pop <- 2000
 growth_rate <- .05
-
+total_pop <- rep(0,7)
 for (i in 1:7) {
   total_pop[i] <- initial_pop - (initial_pop * growth_rate)
   initial_pop <- total_pop[i]
@@ -28,14 +29,14 @@ for (i in 1:7) {
 
 #Step 4: predict the value of n[12] based on a logistic growth equation using a for loop
 # when t = 1, 
-abundance_1 <- 2500 #n[1]
 k <- 10000
 r <- 0.8
 abundances <- rep(0,12)
+abundances[1] <- 2500 #n[1]
 
-for (i in 1:12) {
-  abundances[i] <- abundance_1 + (r * abundance_1 * (k - abundance_1) / k)
-  abundance_1 <- abundances[i]
+for (i in 2:12) {
+  abundances[i] <- abundances[i-1] + (r * abundances[i-1] * (k - abundances[i-1]) / k)
+  
 }
 
 #the value of n[12]
@@ -50,7 +51,7 @@ rep(0, 18)
 #times the ith value of 'i' in the 'ith' spot of the vector above
 vec <- rep(0, 18)
 for (i in seq(1,18)) {
- vec[i] <- (3 * vec[i]) 
+ vec[i] <- (3 * i) 
 }
 
 #Step 5c: make a new vector of zeros and make the first entry the value of 1
@@ -63,11 +64,11 @@ for (i in 2:18) {
 }
 
 #Step 6: create a loop that makes vector of 1st 20 Fibonacci numbers
-length <- 10
-fibnum <- numeric(length)
+lengOfFibNum <- 20
+fibnum <- numeric(lengOfFibNum)
 fibnum[1] <- 0
 fibnum[2] <- 1
-for (i in 3:length) { 
+for (i in 3:lengOfFibNum) { 
   fibnum[i] <- fibnum[i-1]+fibnum[i-2]
 } 
 
