@@ -1,1 +1,0 @@
-This repository will contain all my labs and homework assignments for my Computational Biology course. It will allow me store all versions of these files in a single place and in an organized manner.
