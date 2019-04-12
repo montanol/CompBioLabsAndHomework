@@ -58,8 +58,25 @@ ggplot(familyAndSpeciesData, aes(x = Family, y = MeanDensity)) +
          facet_wrap(facets = ~Family, scale = "free")
 
 #repeat but with lowest density family data 
+lowDenNames <- table(lowAvgDen$Family)
+lowFamNames <- names(lowDenNames)
+keepRows2 <- (woodDataFrame$Family %in% lowFamNames)
+str(keepRows2)
+lowDenFamAndSpecies <- as.data.frame(woodDataFrame[keepRows2, ])
 
+#plot it 
+ggplot(lowDenFamAndSpecies, aes(x = Family, y = MeanDensity)) +
+         geom_boxplot() +
+         facet_wrap(facets = ~Family, scales = "free")
 
+#creating the same plots as above but in a way that makes them 
+#easier to compare
+#high density plot
+ggplot(familyAndSpeciesData, aes(x = Family, y = MeanDensity)) +
+         geom_boxplot() +
+         coord_flip()
 
-
-
+#low density plot
+ggplot(lowDenFamAndSpecies, aes(x = Family, y = MeanDensity)) +
+  geom_boxplot() +
+  coord_flip()
